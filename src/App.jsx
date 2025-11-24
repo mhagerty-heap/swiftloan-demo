@@ -14,12 +14,13 @@ import {
   Database,
   AlertCircle,
   XOctagon,
-  HelpCircle // New Icon for Dead Clicks
+  HelpCircle
 } from 'lucide-react';
 
 // --- Constants & Config ---
 
 const STAGES = {
+// ... (STAGES, STAGE_ORDER, STAGE_URL_SLUGS remain unchanged)
   APPLICATION: 'application',
   PRE_APPROVAL: 'pre_approval',
   DOCUMENTS: 'documents',
@@ -27,7 +28,7 @@ const STAGES = {
   APPROVAL_OFFER: 'approval_offer',
   CLOSING: 'closing',
   DISBURSED: 'disbursed',
-  DISQUALIFIED: 'disqualified'
+  DISQUALIFIED: 'disqualified' // NEW STAGE
 };
 
 const STAGE_ORDER = [
@@ -48,7 +49,7 @@ const STAGE_URL_SLUGS = {
   [STAGES.APPROVAL_OFFER]: 'offerReview',
   [STAGES.CLOSING]: 'finalClosing',
   [STAGES.DISBURSED]: 'fundsDisbursed',
-  [STAGES.DISQUALIFIED]: 'disqualified'
+  [STAGES.DISQUALIFIED]: 'disqualified' // NEW SLUG
 };
 
 // Initial Empty State
@@ -69,6 +70,7 @@ const INITIAL_STATE = {
 // --- Components ---
 
 const Button = ({ children, onClick, variant = 'primary', className = '', ...props }) => {
+// ... (Button component remains unchanged)
   const baseStyle = "px-4 py-2 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-2";
   const variants = {
     primary: "bg-blue-600 text-white hover:bg-blue-700 shadow-sm",
@@ -97,6 +99,7 @@ const Button = ({ children, onClick, variant = 'primary', className = '', ...pro
 };
 
 const Input = ({ label, id, type = "text", value, onChange, placeholder, error }) => (
+// ... (Input component remains unchanged)
   <div className="mb-4">
     <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
     <input
@@ -113,6 +116,7 @@ const Input = ({ label, id, type = "text", value, onChange, placeholder, error }
 );
 
 const Card = ({ children, title, subtitle, className = '' }) => (
+// ... (Card component remains unchanged)
   <div className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden ${className}`}>
     {(title || subtitle) && (
       <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex justify-between items-start">
@@ -133,6 +137,7 @@ const Card = ({ children, title, subtitle, className = '' }) => (
 );
 
 const Badge = ({ status }) => {
+// ... (Badge component remains unchanged)
   const styles = {
     [STAGES.APPLICATION]: "bg-blue-100 text-blue-800",
     [STAGES.PRE_APPROVAL]: "bg-purple-100 text-purple-800",
@@ -153,13 +158,14 @@ const Badge = ({ status }) => {
 
 // --- Views ---
 
-const ApplicationForm = ({ data, updateData, nextStage }) => {
+const ApplicationForm = ({ data, updateData, nextStage, identifyUser }) => {
   const [errors, setErrors] = useState({});
 
   const validate = () => {
       const newErrors = {};
+      // Ensure valid email format for Heap identify
       if (!data.applicantName) newErrors.applicantName = "Name is required";
-      if (!data.email || !data.email.includes('@')) newErrors.email = "Valid email is required";
+      if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) newErrors.email = "Valid email is required";
       if (!data.income || data.income < 1000) newErrors.income = "Valid annual income required";
       return newErrors;
   };
@@ -169,8 +175,12 @@ const ApplicationForm = ({ data, updateData, nextStage }) => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
         setErrors(validationErrors);
-        return; // Stop submission (Friction)
+        return; 
     }
+    
+    // HEAP IDENTIFY: Identify user before moving past the first step
+    identifyUser(data.email, data.applicantName, data.id);
+
     nextStage(STAGES.PRE_APPROVAL, "Application Submitted");
   };
 
@@ -225,6 +235,7 @@ const ApplicationForm = ({ data, updateData, nextStage }) => {
 };
 
 const DocumentsView = ({ nextStage }) => {
+// ... (DocumentsView remains unchanged)
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -268,6 +279,7 @@ const DocumentsView = ({ nextStage }) => {
 };
 
 const WaitingRoom = ({ title, message, icon: Icon }) => (
+// ... (WaitingRoom remains unchanged)
   <Card className="text-center py-12">
     <div className="mx-auto w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
       <Icon size={32} className="text-blue-600" />
@@ -284,6 +296,7 @@ const WaitingRoom = ({ title, message, icon: Icon }) => (
 );
 
 const OfferReview = ({ data, nextStage }) => (
+// ... (OfferReview remains unchanged)
   <Card title="Loan Approved!" subtitle="Review your final terms below.">
     <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
       <div className="flex justify-between items-end border-b border-green-200 pb-4 mb-4">
@@ -311,6 +324,7 @@ const OfferReview = ({ data, nextStage }) => (
 );
 
 const ClosingView = ({ nextStage }) => (
+// ... (ClosingView remains unchanged)
   <Card title="Final Closing" subtitle="Please sign your documents electronically.">
     <div className="space-y-4 mb-8">
       <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
@@ -329,6 +343,7 @@ const ClosingView = ({ nextStage }) => (
 );
 
 const SuccessView = () => (
+// ... (SuccessView remains unchanged)
   <Card className="text-center py-12 bg-gradient-to-b from-white to-green-50">
     <div className="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
       <CheckCircle size={40} className="text-green-600" />
@@ -340,6 +355,7 @@ const SuccessView = () => (
 );
 
 const DisqualifiedView = () => (
+// ... (DisqualifiedView remains unchanged)
     <Card className="text-center py-12 bg-gradient-to-b from-white to-red-50">
       <div className="mx-auto w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6">
         <XOctagon size={40} className="text-red-600" />
@@ -358,6 +374,24 @@ const DisqualifiedView = () => (
 export default function LoanProcessDemo() {
   const [data, setData] = useState(INITIAL_STATE);
   const [showAdmin, setShowAdmin] = useState(true);
+
+  // --- NEW HELPER FUNCTION ---
+  const identifyUser = (email, name, id) => {
+    // Only attempt to identify if the Heap global object exists
+    if (window.heap && typeof window.heap.identify === 'function') {
+        window.heap.identify(email);
+        window.heap.addUserProperties({
+            name: name,
+            loan_app_id: id,
+            initial_income: data.income 
+        });
+        console.log(`[Heap] Identified user: ${email} (ID: ${id})`);
+    } else {
+        console.warn("[Heap] window.heap.identify() skipped: Heap object not found.");
+    }
+  };
+  // --- END NEW HELPER FUNCTION ---
+
 
   useEffect(() => {
     const saved = localStorage.getItem('swiftloan_demo_state');
@@ -440,7 +474,8 @@ export default function LoanProcessDemo() {
   const renderStage = () => {
     switch (data.status) {
       case STAGES.APPLICATION:
-        return <ApplicationForm data={data} updateData={updateData} nextStage={changeStage} />;
+        // Pass the new identifyUser function down to the form
+        return <ApplicationForm data={data} updateData={updateData} nextStage={changeStage} identifyUser={identifyUser} />;
       case STAGES.PRE_APPROVAL:
         setTimeout(() => {
           if (data.status === STAGES.PRE_APPROVAL) changeStage(STAGES.DOCUMENTS, "System Pre-Check Passed");
