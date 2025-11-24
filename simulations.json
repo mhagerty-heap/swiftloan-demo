@@ -1,0 +1,521 @@
+[
+  {
+    "id": "LN-5504",
+    "status": "disbursed",
+    "next_action_due": "DONE",
+    "state_data": {
+      "id": "LN-5504",
+      "applicantName": "Auto User 6174",
+      "email": "auto8589@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-18T18:40:13.648Z",
+          "realTimestamp": "2025-11-18T18:40:21.594Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-18T18:40:13.648Z",
+          "realTimestamp": "2025-11-18T18:40:23.598Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T18:40:13.648Z",
+          "realTimestamp": "2025-11-18T18:40:23.598Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T18:40:13.648Z",
+          "realTimestamp": "2025-11-18T18:42:59.799Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-18T18:40:13.648Z",
+          "realTimestamp": "2025-11-18T18:45:10.206Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-18T18:40:13.648Z",
+      "currentSimulatedDate": "2025-11-18T18:40:13.648Z"
+    }
+  },
+  {
+    "id": "LN-5501",
+    "status": "disbursed",
+    "next_action_due": "DONE (Disbursed)",
+    "state_data": {
+      "id": "LN-5501",
+      "applicantName": "Auto User 7986",
+      "email": "auto7558@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-18T18:43:02.917Z",
+          "realTimestamp": "2025-11-18T18:43:10.582Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-18T18:43:02.917Z",
+          "realTimestamp": "2025-11-18T18:43:12.587Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T18:43:02.917Z",
+          "realTimestamp": "2025-11-18T18:43:12.607Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T18:43:02.917Z",
+          "realTimestamp": "2025-11-18T18:45:16.741Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-18T18:43:02.917Z",
+          "realTimestamp": "2025-11-18T18:58:43.829Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-18T18:43:02.917Z",
+      "currentSimulatedDate": "2025-11-18T18:43:02.917Z"
+    }
+  },
+  {
+    "id": "LN-7931",
+    "status": "disbursed",
+    "next_action_due": "DONE (Disbursed)",
+    "state_data": {
+      "id": "LN-7931",
+      "applicantName": "Auto User 4805",
+      "email": "auto9924@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-18T18:58:45.930Z",
+          "realTimestamp": "2025-11-18T18:58:52.823Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-18T18:58:45.930Z",
+          "realTimestamp": "2025-11-18T18:58:54.829Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T18:58:45.930Z",
+          "realTimestamp": "2025-11-18T18:58:54.854Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T18:58:45.930Z",
+          "realTimestamp": "2025-11-18T19:02:23.372Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-18T18:58:45.930Z",
+          "realTimestamp": "2025-11-20T20:22:41.153Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-18T18:58:45.930Z",
+      "currentSimulatedDate": "2025-11-18T18:58:45.930Z"
+    }
+  },
+  {
+    "id": "LN-1467",
+    "status": "disbursed",
+    "next_action_due": "DONE (Disbursed)",
+    "state_data": {
+      "id": "LN-1467",
+      "applicantName": "Auto User 9488",
+      "email": "auto9467@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-18T19:02:33.447Z",
+          "realTimestamp": "2025-11-18T19:02:41.026Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-18T19:02:33.447Z",
+          "realTimestamp": "2025-11-18T19:02:43.033Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T19:02:33.447Z",
+          "realTimestamp": "2025-11-18T19:02:43.056Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T19:02:33.447Z",
+          "realTimestamp": "2025-11-18T19:04:12.224Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-18T19:02:33.447Z",
+          "realTimestamp": "2025-11-20T20:22:46.074Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-18T19:02:33.447Z",
+      "currentSimulatedDate": "2025-11-18T19:02:33.447Z"
+    }
+  },
+  {
+    "id": "LN-7954",
+    "status": "disbursed",
+    "next_action_due": "DONE (Disbursed)",
+    "state_data": {
+      "id": "LN-7954",
+      "applicantName": "Auto User 4353",
+      "email": "auto4026@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-18T19:03:06.999Z",
+          "realTimestamp": "2025-11-18T19:03:14.066Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:06.999Z",
+          "realTimestamp": "2025-11-18T19:03:16.070Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:06.999Z",
+          "realTimestamp": "2025-11-18T19:03:16.090Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:06.999Z",
+          "realTimestamp": "2025-11-20T20:22:52.935Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:06.999Z",
+          "realTimestamp": "2025-11-20T20:25:40.221Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-18T19:03:06.999Z",
+      "currentSimulatedDate": "2025-11-18T19:03:06.999Z"
+    }
+  },
+  {
+    "id": "LN-2036",
+    "status": "disbursed",
+    "next_action_due": "DONE (Disbursed)",
+    "state_data": {
+      "id": "LN-2036",
+      "applicantName": "Auto User 3468",
+      "email": "auto7067@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-18T19:03:42.341Z",
+          "realTimestamp": "2025-11-18T19:03:49.706Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:42.341Z",
+          "realTimestamp": "2025-11-18T19:03:51.712Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:42.341Z",
+          "realTimestamp": "2025-11-18T19:03:51.737Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:42.341Z",
+          "realTimestamp": "2025-11-20T20:23:00.359Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-18T19:03:42.341Z",
+          "realTimestamp": "2025-11-20T20:25:45.101Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-18T19:03:42.341Z",
+      "currentSimulatedDate": "2025-11-18T19:03:42.341Z"
+    }
+  },
+  {
+    "id": "LN-8709",
+    "status": "disbursed",
+    "next_action_due": "DONE (Disbursed)",
+    "state_data": {
+      "id": "LN-8709",
+      "applicantName": "Auto User 9232",
+      "email": "auto2753@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "approval_offer",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-20T20:23:03.463Z",
+          "realTimestamp": "2025-11-20T20:23:10.796Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-20T20:23:03.463Z",
+          "realTimestamp": "2025-11-20T20:23:12.801Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:23:03.463Z",
+          "realTimestamp": "2025-11-20T20:23:12.817Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:23:03.463Z",
+          "realTimestamp": "2025-11-20T20:25:52.366Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-20T20:23:03.463Z",
+          "realTimestamp": "2025-11-20T20:49:03.208Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
+        }
+      ],
+      "simulatedStartDate": "2025-11-20T20:23:03.463Z",
+      "currentSimulatedDate": "2025-11-20T20:23:03.463Z"
+    }
+  },
+  {
+    "id": "LN-7314",
+    "status": "underwriting",
+    "next_action_due": "2025-11-20T16:56:27.196894",
+    "state_data": {
+      "id": "LN-7314",
+      "applicantName": "Auto User 7755",
+      "email": "auto7751@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "underwriting",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-20T20:53:28.019Z",
+          "realTimestamp": "2025-11-20T20:53:34.951Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:28.019Z",
+          "realTimestamp": "2025-11-20T20:53:36.955Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:28.019Z",
+          "realTimestamp": "2025-11-20T20:53:36.971Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:28.019Z",
+          "realTimestamp": "2025-11-20T21:54:24.181Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        }
+      ],
+      "simulatedStartDate": "2025-11-20T20:53:28.019Z",
+      "currentSimulatedDate": "2025-11-20T20:53:28.019Z"
+    }
+  },
+  {
+    "id": "LN-7665",
+    "status": "underwriting",
+    "next_action_due": "2025-11-20T16:56:34.421128",
+    "state_data": {
+      "id": "LN-7665",
+      "applicantName": "Auto User 4912",
+      "email": "auto4622@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "underwriting",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-20T20:53:55.086Z",
+          "realTimestamp": "2025-11-20T20:54:02.514Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:55.086Z",
+          "realTimestamp": "2025-11-20T20:54:04.519Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:55.086Z",
+          "realTimestamp": "2025-11-20T20:54:04.532Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:55.086Z",
+          "realTimestamp": "2025-11-20T21:54:31.407Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        }
+      ],
+      "simulatedStartDate": "2025-11-20T20:53:55.086Z",
+      "currentSimulatedDate": "2025-11-20T20:53:55.086Z"
+    }
+  },
+  {
+    "id": "LN-9906",
+    "status": "underwriting",
+    "next_action_due": "2025-11-20T16:56:41.654625",
+    "state_data": {
+      "id": "LN-9906",
+      "applicantName": "Auto User 7668",
+      "email": "auto3673@test.com",
+      "income": "75000",
+      "loanAmount": "20000",
+      "creditScore": 720,
+      "status": "underwriting",
+      "documentsUploaded": false,
+      "history": [
+        {
+          "timestamp": "2025-11-20T20:54:31.136Z",
+          "realTimestamp": "2025-11-20T20:54:38.598Z",
+          "stage": "pre_approval",
+          "action": "STAGE_CHANGE",
+          "note": "Application Submitted"
+        },
+        {
+          "timestamp": "2025-11-20T20:54:31.136Z",
+          "realTimestamp": "2025-11-20T20:54:40.604Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:54:31.136Z",
+          "realTimestamp": "2025-11-20T20:54:40.625Z",
+          "stage": "documents",
+          "action": "STAGE_CHANGE",
+          "note": "System Pre-Check Passed"
+        },
+        {
+          "timestamp": "2025-11-20T20:54:31.136Z",
+          "realTimestamp": "2025-11-20T21:54:38.644Z",
+          "stage": "underwriting",
+          "action": "STAGE_CHANGE",
+          "note": "Documents Uploaded"
+        }
+      ],
+      "simulatedStartDate": "2025-11-20T20:54:31.136Z",
+      "currentSimulatedDate": "2025-11-20T20:54:31.136Z"
+    }
+  }
+]
