@@ -315,23 +315,34 @@ const OfferReview = ({ data, nextStage }) => (
   </Card>
 );
 
-const ClosingView = ({ nextStage }) => (
-  <Card title="Final Closing" subtitle="Please sign your documents electronically.">
-    <div className="space-y-4 mb-8">
-      <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
-        <input type="checkbox" className="h-5 w-5 text-blue-600" />
-        <span className="text-gray-700">I agree to the Truth in Lending Disclosure</span>
-      </div>
-      <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
-        <input type="checkbox" className="h-5 w-5 text-blue-600" />
-        <span className="text-gray-700">I agree to the Promissory Note</span>
-      </div>
-    </div>
-    <Button onClick={() => nextStage(STAGES.DISBURSED, "Loan Closed")} className="w-full" id="btn-sign-close">
-      Sign & Finalize
-    </Button>
-  </Card>
-);
+const ClosingView = ({ nextStage }) => {
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      // Ensure the script can see the transition
+      nextStage(STAGES.DISBURSED, "Loan Closed - Final Submission");
+  };
+
+  return (
+    <Card title="Final Closing" subtitle="Please sign your documents electronically.">
+      {/* WRAP IN FORM FOR ANALYTICS AUTO-TRACKING */}
+      <form onSubmit={handleSubmit}> 
+        <div className="space-y-4 mb-8">
+          <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
+            <input type="checkbox" className="h-5 w-5 text-blue-600" />
+            <span className="text-gray-700">I agree to the Truth in Lending Disclosure</span>
+          </div>
+          <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
+            <input type="checkbox" className="h-5 w-5 text-blue-600" />
+            <span className="text-gray-700">I agree to the Promissory Note</span>
+          </div>
+        </div>
+        <Button type="submit" className="w-full" id="btn-sign-close">
+          Sign & Finalize
+        </Button>
+      </form>
+    </Card>
+  );
+};
 
 const SuccessView = () => (
   <Card className="text-center py-12 bg-gradient-to-b from-white to-green-50">
@@ -364,7 +375,7 @@ export default function LoanProcessDemo() {
   const [data, setData] = useState(INITIAL_STATE);
   const [showAdmin, setShowAdmin] = useState(true);
 
-  // --- NEW HEAP HELPER FUNCTION ---
+  // --- HEAP HELPER FUNCTION ---
   const identifyUser = (email, name, id) => {
     if (window.heap && typeof window.heap.identify === 'function') {
         window.heap.identify(email);
@@ -378,7 +389,7 @@ export default function LoanProcessDemo() {
         console.warn("[Heap] window.heap.identify() skipped: Heap object not found.");
     }
   };
-  // --- END NEW HEAP HELPER FUNCTION ---
+  // --- END HEAP HELPER FUNCTION ---
 
 
   useEffect(() => {
