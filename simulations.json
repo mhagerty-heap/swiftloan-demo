@@ -379,8 +379,8 @@
   },
   {
     "id": "LN-7314",
-    "status": "underwriting",
-    "next_action_due": "2025-11-20T16:56:27.196894",
+    "status": "approval_offer",
+    "next_action_due": "2025-11-24T10:57:14.630724",
     "state_data": {
       "id": "LN-7314",
       "applicantName": "Auto User 7755",
@@ -388,7 +388,7 @@
       "income": "75000",
       "loanAmount": "20000",
       "creditScore": 720,
-      "status": "underwriting",
+      "status": "approval_offer",
       "documentsUploaded": false,
       "history": [
         {
@@ -418,6 +418,13 @@
           "stage": "underwriting",
           "action": "STAGE_CHANGE",
           "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:28.019Z",
+          "realTimestamp": "2025-11-24T15:52:12.597Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
         }
       ],
       "simulatedStartDate": "2025-11-20T20:53:28.019Z",
@@ -426,8 +433,8 @@
   },
   {
     "id": "LN-7665",
-    "status": "underwriting",
-    "next_action_due": "2025-11-20T16:56:34.421128",
+    "status": "approval_offer",
+    "next_action_due": "2025-11-24T10:57:19.537888",
     "state_data": {
       "id": "LN-7665",
       "applicantName": "Auto User 4912",
@@ -435,7 +442,7 @@
       "income": "75000",
       "loanAmount": "20000",
       "creditScore": 720,
-      "status": "underwriting",
+      "status": "approval_offer",
       "documentsUploaded": false,
       "history": [
         {
@@ -465,6 +472,13 @@
           "stage": "underwriting",
           "action": "STAGE_CHANGE",
           "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-20T20:53:55.086Z",
+          "realTimestamp": "2025-11-24T15:52:17.508Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
         }
       ],
       "simulatedStartDate": "2025-11-20T20:53:55.086Z",
@@ -473,8 +487,8 @@
   },
   {
     "id": "LN-9906",
-    "status": "underwriting",
-    "next_action_due": "2025-11-20T16:56:41.654625",
+    "status": "approval_offer",
+    "next_action_due": "2025-11-24T10:57:24.435436",
     "state_data": {
       "id": "LN-9906",
       "applicantName": "Auto User 7668",
@@ -482,7 +496,7 @@
       "income": "75000",
       "loanAmount": "20000",
       "creditScore": 720,
-      "status": "underwriting",
+      "status": "approval_offer",
       "documentsUploaded": false,
       "history": [
         {
@@ -512,6 +526,13 @@
           "stage": "underwriting",
           "action": "STAGE_CHANGE",
           "note": "Documents Uploaded"
+        },
+        {
+          "timestamp": "2025-11-20T20:54:31.136Z",
+          "realTimestamp": "2025-11-24T15:52:22.407Z",
+          "stage": "approval_offer",
+          "action": "STAGE_CHANGE",
+          "note": "Admin Force: Approved"
         }
       ],
       "simulatedStartDate": "2025-11-20T20:54:31.136Z",

@@ -17,7 +17,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys 
 
 # --- CONFIGURATION ---
-TARGET_URL = "http://localhost:5173" 
+TARGET_URL = "https://swiftloan-demo.vercel.app/" 
 DB_FILE = "simulations.json"
 HEADLESS = True 
 
