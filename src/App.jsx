@@ -433,6 +433,20 @@ export default function LoanProcessDemo() {
   };
 
   const changeStage = (newStage, actionLabel) => {
+    
+    // --- HEAP TRACKING FOR SERVER APPROVAL ---
+    if (actionLabel === "Admin Force: Approved") {
+        if (window.heap && typeof window.heap.track === 'function') {
+            window.heap.track('Underwriting Approved (Server Event)', {
+                simulated_date: data.currentSimulatedDate,
+                loan_app_id: data.id,
+                simulated_time_lag: (new Date(data.currentSimulatedDate) - new Date(data.simulatedStartDate))
+            });
+            console.log(`[Heap] Tracked Server Approval for ${data.id}`);
+        }
+    }
+    // --- END HEAP TRACKING ---
+
     setData(prev => ({
       ...prev,
       status: newStage,
