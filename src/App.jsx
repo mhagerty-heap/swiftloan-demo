@@ -66,7 +66,7 @@ const INITIAL_STATE = {
   currentSimulatedDate: new Date().toISOString(),
 };
 
-// --- Components ---
+// --- UI Components ---
 
 const Button = ({ children, onClick, variant = 'primary', className = '', ...props }) => {
   const baseStyle = "px-4 py-2 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-2";
@@ -77,8 +77,8 @@ const Button = ({ children, onClick, variant = 'primary', className = '', ...pro
     admin: "bg-slate-800 text-slate-200 hover:bg-slate-700 text-sm"
   };
 
-  // CHAOS: 5% chance to throw a console error on any button click
   const handleClick = (e) => {
+    // 5% chance to simulate a UI/API lag error in logs
     if (Math.random() < 0.05) {
         console.error("[Analytics Demo] Simulated API Timeout Error: 504 Gateway Timeout");
     }
@@ -120,7 +120,7 @@ const Card = ({ children, title, subtitle, className = '' }) => (
             {title && <h2 className="text-lg font-semibold text-gray-900">{title}</h2>}
             {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
         </div>
-        {/* CHAOS: Dead Click Target - Looks interactive but does nothing */}
+        {/* Dead Click Target for CSQ/Heap Friction Discovery */}
         <div className="text-gray-400 cursor-help hover:text-gray-600" title="Help" id="dead-click-help">
             <HelpCircle size={20} />
         </div>
@@ -158,7 +158,6 @@ const ApplicationForm = ({ data, updateData, nextStage, identifyUser }) => {
 
   const validate = () => {
       const newErrors = {};
-      // Ensure valid email format for Heap identify
       if (!data.applicantName) newErrors.applicantName = "Name is required";
       if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) newErrors.email = "Valid email is required";
       if (!data.income || data.income < 1000) newErrors.income = "Valid annual income required";
@@ -173,9 +172,7 @@ const ApplicationForm = ({ data, updateData, nextStage, identifyUser }) => {
         return; 
     }
     
-    // HEAP IDENTIFY: Identify user before moving past the first step
     identifyUser(data.email, data.applicantName, data.id);
-
     nextStage(STAGES.PRE_APPROVAL, "Application Submitted");
   };
 
@@ -263,7 +260,7 @@ const DocumentsView = ({ nextStage }) => {
         )}
       </div>
       <div className="mt-6 flex justify-between items-center">
-         <p className="text-sm text-gray-500 italic">Note: This simulates a file upload event.</p>
+         <p className="text-sm text-gray-500 italic">Note: Simulates a document upload event.</p>
          <Button onClick={handleUpload} disabled={isUploading} id="btn-upload-docs">
             {isUploading ? 'Uploading...' : 'Select Files'}
          </Button>
@@ -282,14 +279,14 @@ const WaitingRoom = ({ title, message, icon: Icon }) => (
     <div className="bg-yellow-50 border border-yellow-200 rounded p-4 text-sm text-yellow-800 inline-block mx-auto">
       <div className="flex items-center gap-2">
         <AlertCircle size={16} />
-        <span>Waiting for external system event...</span>
+        <span>Waiting for system update...</span>
       </div>
     </div>
   </Card>
 );
 
 const OfferReview = ({ data, nextStage }) => (
-  <Card title="Loan Approved!" subtitle="Review your final terms below.">
+  <Card title="Loan Approved!" subtitle="Review your final terms.">
     <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
       <div className="flex justify-between items-end border-b border-green-200 pb-4 mb-4">
         <div>
@@ -302,8 +299,8 @@ const OfferReview = ({ data, nextStage }) => (
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 text-sm text-green-900">
-        <div>Term Length: <strong>60 Months</strong></div>
-        <div>Monthly Payment: <strong>$950/mo</strong></div>
+        <div>Term: <strong>60 Months</strong></div>
+        <div>Payment: <strong>$950/mo</strong></div>
       </div>
     </div>
     <div className="flex justify-end gap-3">
@@ -318,22 +315,20 @@ const OfferReview = ({ data, nextStage }) => (
 const ClosingView = ({ nextStage }) => {
   const handleSubmit = (e) => {
       e.preventDefault();
-      // Ensure the script can see the transition
       nextStage(STAGES.DISBURSED, "Loan Closed - Final Submission");
   };
 
   return (
-    <Card title="Final Closing" subtitle="Please sign your documents electronically.">
-      {/* WRAP IN FORM FOR ANALYTICS AUTO-TRACKING */}
+    <Card title="Final Closing" subtitle="Sign documents electronically.">
       <form onSubmit={handleSubmit}> 
         <div className="space-y-4 mb-8">
           <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
             <input type="checkbox" className="h-5 w-5 text-blue-600" />
-            <span className="text-gray-700">I agree to the Truth in Lending Disclosure</span>
+            <span className="text-gray-700">Truth in Lending Disclosure</span>
           </div>
           <div className="flex items-center gap-3 p-3 border rounded hover:bg-gray-50 cursor-pointer">
             <input type="checkbox" className="h-5 w-5 text-blue-600" />
-            <span className="text-gray-700">I agree to the Promissory Note</span>
+            <span className="text-gray-700">Promissory Note</span>
           </div>
         </div>
         <Button type="submit" className="w-full" id="btn-sign-close">
@@ -350,8 +345,8 @@ const SuccessView = () => (
       <CheckCircle size={40} className="text-green-600" />
     </div>
     <h2 className="text-3xl font-bold text-gray-900 mb-2">Funds Disbursed!</h2>
-    <p className="text-gray-600 mb-8">The funds have been sent to your account. Thank you for choosing SwiftLoan.</p>
-    <Button variant="secondary" onClick={() => window.location.reload()}>Return Home</Button>
+    <p className="text-gray-600 mb-8">The funds have been sent to your account.</p>
+    <Button variant="secondary" onClick={() => window.location.reload()}>New Application</Button>
   </Card>
 );
 
@@ -362,10 +357,9 @@ const DisqualifiedView = () => (
       </div>
       <h2 className="text-3xl font-bold text-gray-900 mb-2">Application Disqualified</h2>
       <p className="text-gray-600 max-w-md mx-auto mb-8">
-        We regret to inform you that your application could not be approved due to insufficient documentation. 
-        You may reapply in 90 days.
+        We regret that your application was not approved at this time.
       </p>
-      <Button variant="secondary" onClick={() => window.location.reload()}>Try New Application</Button>
+      <Button variant="secondary" onClick={() => window.location.reload()}>Try Again</Button>
     </Card>
 );
 
@@ -375,77 +369,56 @@ export default function LoanProcessDemo() {
   const [data, setData] = useState(INITIAL_STATE);
   const [showAdmin, setShowAdmin] = useState(true);
 
-  // --- HEAP HELPER FUNCTION ---
   const identifyUser = (email, name, id) => {
     if (window.heap && typeof window.heap.identify === 'function') {
         window.heap.identify(email);
         window.heap.addUserProperties({
             name: name,
             loan_app_id: id,
-            initial_income: data.income 
+            demo_user: "automation"
         });
-        console.log(`[Heap] Identified user: ${email} (ID: ${id})`);
-    } else {
-        console.warn("[Heap] window.heap.identify() skipped: Heap object not found.");
     }
   };
-  // --- END HEAP HELPER FUNCTION ---
-
 
   useEffect(() => {
     const saved = localStorage.getItem('swiftloan_demo_state');
     if (saved) {
       try {
-        const parsed = JSON.parse(saved);
-        setData(parsed);
-      } catch (e) {
-        console.error("State load failed", e);
-      }
+        setData(JSON.parse(saved));
+      } catch (e) { console.error("Load failed", e); }
     } else {
       setData(prev => ({ ...prev, id: `LN-${Math.floor(Math.random() * 10000)}` }));
     }
   }, []);
 
   useEffect(() => {
-    if (data.id) {
-      localStorage.setItem('swiftloan_demo_state', JSON.stringify(data));
-    }
+    if (data.id) localStorage.setItem('swiftloan_demo_state', JSON.stringify(data));
   }, [data]);
 
   // Sync URL with Stage for Analytics
   useEffect(() => {
     const slug = STAGE_URL_SLUGS[data.status];
-    
-    if (slug && !window.location.protocol.startsWith('blob')) {
+    if (slug) {
       const newUrl = `${window.location.pathname}?step=${slug}`;
-      try {
-        window.history.replaceState(null, '', newUrl);
-      } catch (e) {
-        console.warn("Analytics URL update skipped (Sandbox Environment)");
-      }
+      try { window.history.replaceState(null, '', newUrl); } catch (e) {}
     }
   }, [data.status]);
-
-  // --- Logic Helpers ---
 
   const updateData = (key, value) => {
     setData(prev => ({ ...prev, [key]: value }));
   };
 
   const changeStage = (newStage, actionLabel) => {
-    
-    // --- HEAP TRACKING FOR SERVER APPROVAL ---
+    // TRACK SERVER-SIDE APPROVAL EVENT AS CUSTOM HEAP EVENT
     if (actionLabel === "Admin Force: Approved") {
         if (window.heap && typeof window.heap.track === 'function') {
             window.heap.track('Underwriting Approved (Server Event)', {
                 simulated_date: data.currentSimulatedDate,
                 loan_app_id: data.id,
-                simulated_time_lag: (new Date(data.currentSimulatedDate) - new Date(data.simulatedStartDate))
+                time_to_approval_simulated: (new Date(data.currentSimulatedDate) - new Date(data.simulatedStartDate))
             });
-            console.log(`[Heap] Tracked Server Approval for ${data.id}`);
         }
     }
-    // --- END HEAP TRACKING ---
 
     setData(prev => ({
       ...prev,
@@ -454,7 +427,6 @@ export default function LoanProcessDemo() {
         timestamp: prev.currentSimulatedDate,
         realTimestamp: new Date().toISOString(),
         stage: newStage,
-        action: 'STAGE_CHANGE',
         note: actionLabel
       }]
     }));
@@ -463,49 +435,26 @@ export default function LoanProcessDemo() {
   const advanceTime = (days) => {
     const current = new Date(data.currentSimulatedDate);
     current.setDate(current.getDate() + days);
-    
-    setData(prev => ({
-      ...prev,
-      currentSimulatedDate: current.toISOString(),
-      history: [...prev.history, {
-        timestamp: current.toISOString(),
-        realTimestamp: new Date().toISOString(),
-        stage: prev.status,
-        action: 'TIME_TRAVEL',
-        note: `Advanced ${days} days`
-      }]
-    }));
+    setData(prev => ({ ...prev, currentSimulatedDate: current.toISOString() }));
   };
 
   const resetDemo = () => {
-    // ANALYTICS HYGIENE: Reset identity before clearing state
-    if (window.heap && typeof window.heap.resetIdentity === 'function') {
-        window.heap.resetIdentity(); 
-        console.log("[Heap] Identity reset for new anonymous session.");
-    } else {
-        console.warn("[Heap] window.heap.resetIdentity() skipped: Heap object not found.");
-    }
-    
+    if (window.heap && typeof window.heap.resetIdentity === 'function') window.heap.resetIdentity(); 
     localStorage.removeItem('swiftloan_demo_state');
     window.location.reload();
   };
 
-  // --- Render Logic ---
-
   const renderStage = () => {
     switch (data.status) {
       case STAGES.APPLICATION:
-        // Pass the new identifyUser function down to the form
         return <ApplicationForm data={data} updateData={updateData} nextStage={changeStage} identifyUser={identifyUser} />;
       case STAGES.PRE_APPROVAL:
-        setTimeout(() => {
-          if (data.status === STAGES.PRE_APPROVAL) changeStage(STAGES.DOCUMENTS, "System Pre-Check Passed");
-        }, 2000);
-        return <WaitingRoom title="Analyzing Eligibility..." message="We are running a soft credit check." icon={RefreshCw} />;
+        setTimeout(() => { if (data.status === STAGES.PRE_APPROVAL) changeStage(STAGES.DOCUMENTS, "System Ready"); }, 1500);
+        return <WaitingRoom title="Analyzing Eligibility..." message="Soft credit check in progress." icon={RefreshCw} />;
       case STAGES.DOCUMENTS:
         return <DocumentsView nextStage={changeStage} />;
       case STAGES.UNDERWRITING:
-        return <WaitingRoom title="Underwriting Review" message="Our team is reviewing your documents. This usually takes 3-5 business days." icon={Shield} />;
+        return <WaitingRoom title="Underwriting Review" message="Our team is reviewing your documentation." icon={Shield} />;
       case STAGES.APPROVAL_OFFER:
         return <OfferReview data={data} nextStage={changeStage} />;
       case STAGES.CLOSING:
@@ -514,8 +463,7 @@ export default function LoanProcessDemo() {
         return <SuccessView />;
       case STAGES.DISQUALIFIED:
         return <DisqualifiedView />;
-      default:
-        return <div>Unknown Stage</div>;
+      default: return <div>Unknown Stage</div>;
     }
   };
 
@@ -523,169 +471,76 @@ export default function LoanProcessDemo() {
 
   return (
     <div className="min-h-screen bg-slate-100 font-sans flex flex-col md:flex-row">
-      
-      {/* --- Admin / Analytics Simulator Panel (Left Side) --- */}
       {showAdmin && (
-        <aside className="w-full md:w-80 bg-slate-900 text-slate-300 flex-shrink-0 flex flex-col h-screen sticky top-0 overflow-y-auto border-r border-slate-800 shadow-2xl z-50 flex-shrink-0">
+        <aside className="w-full md:w-80 bg-slate-900 text-slate-300 flex-shrink-0 flex flex-col h-screen sticky top-0 overflow-y-auto border-r border-slate-800 shadow-2xl z-50">
           <div className="p-6 border-b border-slate-800">
             <div className="flex items-center gap-2 text-white font-bold text-xl mb-1">
               <Database size={20} className="text-blue-500" />
               <span>Data Layer</span>
             </div>
-            <p className="text-xs text-slate-500">Simulate Server & Time Events</p>
+            <p className="text-xs text-slate-500">Analytics Simulator</p>
           </div>
-
           <div className="p-6 space-y-8 flex-1">
-            {/* Time Travel Controls */}
             <div>
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-                <Clock size={14} /> Time Simulation
+                <Clock size={14} /> Time Travel
               </h3>
               <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
                 <div className="text-sm text-white mb-2 font-mono">
-                  {new Date(data.currentSimulatedDate).toLocaleDateString(undefined, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}
+                  {new Date(data.currentSimulatedDate).toLocaleDateString()}
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <Button variant="admin" onClick={() => advanceTime(1)}>+ 1 Day</Button>
-                  <Button variant="admin" onClick={() => advanceTime(5)}>+ 5 Days</Button>
+                  <Button variant="admin" onClick={() => advanceTime(1)}>+1 Day</Button>
+                  <Button variant="admin" onClick={() => advanceTime(5)}>+5 Days</Button>
                 </div>
-                <p className="text-xs text-slate-500 mt-2 leading-tight">
-                  Advances the `timestamp` property in the JSON event history to test funnel drop-off over time.
-                </p>
               </div>
             </div>
-
-            {/* State Force Controls */}
             <div>
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-                <Settings size={14} /> Force Server State
+                <Settings size={14} /> Server Actions
               </h3>
               <div className="space-y-2">
-                <Button variant="admin" className="w-full justify-start" onClick={() => changeStage(STAGES.UNDERWRITING, "Admin Force: Underwriting")}>
-                   Force: To Underwriting
-                </Button>
-                <Button variant="admin" className="w-full justify-start" onClick={() => changeStage(STAGES.APPROVAL_OFFER, "Admin Force: Approved")}>
-                   Force: Server Approves
-                </Button>
-                <Button variant="admin" className="w-full justify-start text-red-300 hover:text-white hover:bg-red-900" onClick={resetDemo}>
-                   <RefreshCw size={14} /> Reset Demo
-                </Button>
+                <Button variant="admin" className="w-full justify-start" onClick={() => changeStage(STAGES.UNDERWRITING, "Admin Force: Underwriting")}>Force Underwriting</Button>
+                <Button variant="admin" className="w-full justify-start" onClick={() => changeStage(STAGES.APPROVAL_OFFER, "Admin Force: Approved")}>Force: Server Approves</Button>
+                <Button variant="admin" className="w-full justify-start text-red-300 hover:bg-red-900" onClick={resetDemo}><RefreshCw size={14} /> Reset Demo</Button>
               </div>
             </div>
-
-            {/* JSON Preview */}
-            <div>
-               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">User Object (JSON)</h3>
-               <div className="bg-black rounded p-3 overflow-x-auto border border-slate-800">
-                 <pre className="text-[10px] font-mono text-green-400">
-                   {JSON.stringify({
-                     id: data.id,
-                     status: data.status,
-                     currDate: data.currentSimulatedDate,
-                     historyCount: data.history.length
-                   }, null, 2)}
-                 </pre>
-                 <div className="mt-2 pt-2 border-t border-slate-800">
-                    <p className="text-[10px] text-slate-400">Last Event:</p>
-                    <pre className="text-[10px] font-mono text-blue-300">
-                        {data.history.length > 0 ? JSON.stringify(data.history[data.history.length - 1], null, 2) : 'None'}
-                    </pre>
-                 </div>
-               </div>
-            </div>
-          </div>
-          
-          <div className="p-4 border-t border-slate-800 text-xs text-center text-slate-600">
-            SwiftLoan Demo v1.0
           </div>
         </aside>
       )}
-
-      {/* --- Main Application Content (Right Side) --- */}
-      <main className="flex-1 flex flex-col h-screen overflow-y-auto relative">
-        
-        {/* App Header */}
-        <header className="bg-white shadow-sm z-40 px-8 py-4 flex justify-between items-center sticky top-0 flex-shrink-0">
+      <main className="flex-1 flex flex-col h-screen overflow-y-auto">
+        <header className="bg-white shadow-sm z-40 px-8 py-4 flex justify-between items-center sticky top-0">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 text-white p-2 rounded-lg">
-              <DollarSign size={24} />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">SwiftLoan</h1>
-              <p className="text-xs text-gray-500">Secure Application Portal</p>
-            </div>
+            <div className="bg-blue-600 text-white p-2 rounded-lg"><DollarSign size={24} /></div>
+            <div><h1 className="text-xl font-bold text-gray-900">SwiftLoan</h1></div>
           </div>
-          <div className="flex items-center gap-4">
-             <div className="text-right hidden sm:block">
-                <p className="text-sm font-medium text-gray-900">Application ID: {data.id}</p>
-                <Badge status={data.status} />
-             </div>
-             <button 
-               onClick={() => setShowAdmin(!showAdmin)} 
-               className="md:hidden p-2 text-gray-500 hover:bg-gray-100 rounded"
-             >
-               <Settings size={20} />
-             </button>
+          <div className="text-right">
+            <p className="text-xs font-medium text-gray-500">ID: {data.id}</p>
+            <Badge status={data.status} />
           </div>
         </header>
-
-        {/* Progress Bar */}
-        <div className="px-4 md:px-8 py-6 bg-white border-b border-gray-200 overflow-x-auto flex-shrink-0">
-          <div className="flex items-center w-full">
-            {STAGE_ORDER.map((stage, index) => {
-              const isActive = index === progressIndex;
-              const isCompleted = index < progressIndex;
-              
-              const isFinalStage = index === STAGE_ORDER.length - 1;
-              const isFinished = data.status === STAGES.DISBURSED;
-              const showCheck = isCompleted || (isFinalStage && isFinished);
-
-              let bubbleClass = "bg-gray-100 border-gray-300 text-gray-400";
-              if (showCheck) {
-                 bubbleClass = isFinalStage ? "bg-green-600 border-green-600 text-white" : "bg-blue-600 border-blue-600 text-white";
-              } else if (isActive) {
-                 bubbleClass = "bg-white border-blue-600 text-blue-600";
-              }
-
-              return (
-                <div key={stage} className="flex items-center flex-1 last:flex-none">
-                  <div className={`flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold border-2 flex-shrink-0 ${bubbleClass}`}>
-                    {showCheck ? <CheckCircle size={14} /> : index + 1}
-                  </div>
-                  {index !== STAGE_ORDER.length - 1 && (
-                     <div className={`h-1 flex-1 mx-1 md:mx-2 rounded ${isCompleted ? 'bg-blue-600' : 'bg-gray-200'}`} />
-                  )}
+        <div className="px-8 py-6 bg-white border-b border-gray-200">
+          <div className="flex items-center w-full max-w-3xl mx-auto">
+            {STAGE_ORDER.map((stage, index) => (
+              <div key={stage} className="flex items-center flex-1 last:flex-none">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 ${index <= progressIndex ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white border-gray-300 text-gray-400'}`}>
+                    {index < progressIndex ? <CheckCircle size={14}/> : index + 1}
                 </div>
-              );
-            })}
-          </div>
-          <div className="flex justify-between w-full mt-2 text-[10px] md:text-xs text-gray-500 font-medium uppercase tracking-wide">
-             <span>Apply</span>
-             <span>Check</span>
-             <span>Docs</span>
-             <span>Review</span>
-             <span>Offer</span>
-             <span>Sign</span>
-             <span>Cash</span>
+                {index !== STAGE_ORDER.length - 1 && <div className={`h-1 flex-1 mx-2 ${index < progressIndex ? 'bg-blue-600' : 'bg-gray-200'}`} />}
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* Content Area */}
-        <div className="flex-1 p-4 md:p-8 max-w-4xl mx-auto w-full">
+        <div className="flex-1 p-8 max-w-4xl mx-auto w-full">
           {renderStage()}
-
-          {/* Context for the Demo User */}
           <div className="mt-12 p-4 bg-blue-50 rounded border border-blue-100 text-sm text-blue-800">
-             <h4 className="font-bold flex items-center gap-2 mb-2"><Briefcase size={16} /> Demo Instructions</h4>
-             <ul className="list-disc pl-5 space-y-1 opacity-80">
-                <li>This app simulates a 15-30 day process.</li>
-                <li>Use the <strong>Data Layer</strong> panel on the left to simulate time passing between steps.</li>
-                <li>Some steps (like Underwriting) are "Server Side" and require you to click "Force: Server Approves" in the admin panel to proceed.</li>
-                <li>All actions update the <code>history</code> array in the JSON object with timestamps.</li>
+             <h4 className="font-bold flex items-center gap-2 mb-2"><Briefcase size={16} /> Automation Context</h4>
+             <ul className="list-disc pl-5 opacity-80">
+                <li>Simulate time passing to test drop-off analytics.</li>
+                <li>Server events are triggered via the "Force: Server Approves" button.</li>
              </ul>
           </div>
         </div>
-
       </main>
     </div>
   );
